@@ -145,31 +145,37 @@
       bottom: -10px;
     }
 
-    #home.section {
-      max-width: none;
-      width: 100vw;
-      margin: 0;
-      padding: 0;
-    }
 
-    main {
-      padding-top: 0;
-    }
+  #home.section {
+    max-width: none;      /* allow it to grow to the viewport */
+    width: 100vw;         /* force full viewport width */
+    margin: 0;            /* cancel the auto-center */
+    padding: 0;           /* remove the side padding */
+  }
+
+  /* 2) Cancel the global push-down so hero can slide up under the nav */
+  main {
+    padding-top: 0;   /* remove the 100px gap */
+  }
 
     /* ===== Hero ===== */
+    /* Desktop-only: ensure BG covers full viewport */
     #home {
-      background-image: url('assets/logo.jpg');
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      background-attachment: fixed;
-      min-height: 100vh;
+      /* Use explicit background properties instead of shorthand */
+      background-image: url('assets/logo.jpg');   /* hero BG image */
+      background-repeat: no-repeat;                /* no tiling */
+      background-position: center;          /* center image */
+      background-size: cover;                      /* cover entire area */
+      background-attachment: fixed;               /* normal scroll behavior */
+
+      min-height: 100vh;                           /* full viewport height */
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      position: relative;
+      align-items: center;                        /* vertically center content */
+      justify-content: center;                    /* horizontally center content */
+      padding: 0;                                 /* remove extra padding */      position: relative;
     }
+
+
     #home::after {
       content: '';
       position: absolute;
@@ -207,9 +213,10 @@
       transform: scale(1.1) rotate(-1deg);
     }
 
+  
     /* ===== Reduce gap under section-nav ===== */
     .section-nav + .section {
-      margin-top: 10px;
+      margin-top: 10px; /* reduced from 40px */
     }
 
     /* ===== About & Mission ===== */
@@ -234,31 +241,36 @@
       color: #eee;
       line-height: 1.5;
     }
-    .top-cards .card {
-      overflow: hidden;
-    }
-    .top-cards .card h2 {
-      position: relative;
-      padding-bottom: 12px;
-    }
-    .top-cards .card h2::after {
-      content: "";
-      position: absolute;
-      bottom: 4px;
-      left: -25px;
-      width: 540px;
-      height: 6px;
-      background: #000;
-      border-radius: 2px;
-    }
+
+    /* ── 1 & 2) Underlines under “ABOUT US” & “Our Mission” ── */
+.top-cards .card {
+  overflow: hidden;      /* optional: prevent any overflow */
+}
+
+.top-cards .card h2 {
+  position: relative;
+  padding-bottom: 12px;  /* at least your bar’s height */
+}
+
+.top-cards .card h2::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;             /* move up/down */
+  left: -25px;               /* move right/left (or use right:) */
+  width: 540px;          /* bar length */
+  height: 6px;           /* bar thickness */
+  background: #000;      /* bar colour */
+  border-radius: 2px;
+}
+
 
     /* ===== Section-Nav Heading ===== */
     .section-nav {
       font-size: 2rem;
       font-weight: 600;
       color: #BDFF20;
-      margin: 1px 0 1px;
-      padding: 2px 0;
+      margin: 1px 0 1px; /* tightened margins */
+      padding: 2px 0;    /* tightened padding */
       letter-spacing: 0.5px;
       text-transform: uppercase;
       text-align: center;
@@ -278,8 +290,8 @@
     .goals-card .title-area {
       grid-column: 1;
       grid-row: 1 / span 2;
-      position: relative;
-      padding-right: 16px;
+      position: relative;       /* ← make ::after absolute to this */
+      padding-right: 16px;      /* ← room for the bar */
     }
     .goals-card .title-area h2 {
       font-size: 2.5rem;
@@ -309,38 +321,78 @@
       color: #ccc;
       margin-top: 4px;
     }
-    .goals-card .title-area {
-      position: relative;
-      padding-right: 12px;
-    }
-    .goals-card .title-area::after {
-      content: "";
-      position: absolute;
-      top: 120px;
-      transform: translateY(-50%);
-      right: 0;
-      width: 6px;
-      height: 320px;
-      background: #000;
-      border-radius: 2px;
-    }
-    .top-cards .card:nth-child(1) h2,
-    .top-cards .card:nth-child(2) h2 {
-      color: #bdff20;
-      font-size: 2.1rem;
-      text-align: left;
-      margin-top: -12px;
-      margin-bottom: 16px;
-    }
-    .goals-card .title-area h2 {
-      color: #bdff20;
-      font-size: 2.1rem;
-      text-align: center;
-      margin: 0;
-      padding-right: 24px;
-      margin-top: 75px;
-      margin-bottom: 16px;
-    }
+
+    /* ── 3) Vertical bar next to “GV Goals” ── */
+/* make sure the container is positioned */
+.goals-card .title-area {
+  position: relative;   /* ← your anchor for the ::after */
+  padding-right: 12px;  /* ← at least the bar’s width so your text doesn’t bump into it */
+}
+
+/* the vertical bar itself */
+.goals-card .title-area::after {
+  content: "";
+  position: absolute;
+
+  /* vertical position – change this */
+  top: 120px;             /* 50% down from the top of .title-area */
+  transform: translateY(-50%); /* center it vertically */
+
+  /* horizontal position – change this */
+  right: 0;             /* flush to the right edge */
+  /* right: -10px; */    /* ← nudge it 10px outside */
+  /* left: 0; */         /* ← instead, stick it to the left edge */
+
+  /* size & style */
+  width: 6px;           /* thickness */
+  height: 320px;          /* length, relative to .title-area height */
+  background: #000;     /* colour */
+  border-radius: 2px;
+}
+ 
+
+/* ── ABOUT US & Our Mission ── */
+.top-cards .card:nth-child(1) h2,   /* target “ABOUT US” */
+.top-cards .card:nth-child(2) h2 {  /* target “Our Mission” */
+  /* ─ change the text colour ─ */
+  color: #bdff20;            /* ← your new colour here */
+
+  /* ─ change the font size ─ */
+  font-size: 2.1rem;         /* ← adjust up/down */
+
+  /* ─ change the alignment ─ */
+  text-align: left;        /* ← left / center / right */
+
+  /* ─ nudge position ─ */
+  margin-top: -12px;             /* ← moves it down/up */
+  margin-bottom: 16px;       /* ← space below */
+  /* or, for more precise control: */
+  /* transform: translateX(20px) translateY(-10px); */
+}
+
+/* ── GV Goals ── */
+.goals-card .title-area h2 {
+  /* ─ change the text colour ─ */
+  color: #bdff20;            /* ← your new colour here */
+
+  /* ─ change the font size ─ */
+  font-size: 2.1rem;           /* ← adjust up/down */
+
+  /* ─ change the alignment ─ */
+  text-align: center;         /* ← left / center / right */
+
+  /* ─ nudge position ─ */
+  margin: 0;                 /* reset default margins */
+  padding-right: 24px;       /* space before vertical bar */
+ /* ─ nudge position ─ */
+  margin-top: 75px;             /* ← moves it down/up */
+  margin-bottom: 16px;       /* ← space below */
+
+  /* or: */
+  /* transform: translateX(-10px) translateY(5px); */
+}
+
+
 
     /* ===== Events ===== */
     #events .subheading {
@@ -388,13 +440,20 @@
       transform: scale(1.02);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
     }
-    .event-subtitle {
-      font-size: 1.2rem;
-      color: #BDFF20;
-      margin-bottom: 16px;
-      text-transform: uppercase;
-    }
-    .event-text.align-left { text-align: left; }
+
+
+
+  .event-subtitle {
+    font-size: 1.2rem;         /* size of the new sub-heading */
+    color: #BDFF20;            /* neon green */
+    margin-bottom: 16px;       /* space below it */
+    text-transform: uppercase; /* optional styling */
+  }
+
+  /* 2) Utility classes for text alignment */
+  .event-text.align-left   { text-align: left; }
+
+ 
 
     /* ===== Team ===== */
     #team .team-members {
@@ -536,378 +595,418 @@
       font-size: 1rem;
       margin: 0;
     }
+
+    /* hide by default */
     .close-btn {
       display: none;
     }
 
     /* ===== Mobile Overrides ===== */
     @media (max-width: 768px) {
-      /* ── GLOBAL RESET & BASE ── */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        font-family: 'Poppins', sans-serif;
-        background: #000;
-        color: #fff;
-      }
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
 
-      /* ── HEADER BAR ── */
-      header {
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        padding: 10px 20px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 100;
-      }
-      .logo {
-        color: #BDFF20;
-        font-size: 1.25rem;
-        font-weight: 600;
-      }
+ /* ── HEADER BAR ── */
+    header { /* Site header */
+      background: #333; /* Dark grey background */
+      padding: 10px 20px; /* 10px vertical, 20px horizontal padding */
+      position: fixed; /* Fixed at top */
+      top: 0; left: 0; width: 100%; /* Full-width, pinned to top-left */
+      z-index: 100; /* Appear above other content */
 
-      /* ── HAMBURGER & NAV MENU ── */
-      :root {
-        --green: #BDFF20;
-        --menu-bg: rgba(0, 0, 50, 0.8);
-      }
-      .hamburger {
-        position: absolute;
-        top: 12px;
-        right: 20px;
-        font-size: 1.75rem;
-        color: var(--green);
-        cursor: pointer;
-        z-index: 200;
-      }
-      .nav-menu {
-        display: none;
-        position: fixed;
-        top: 50px;
-        right: 16px;
-        background: var(--menu-bg);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-radius: 12px;
-        padding: 16px;
-        min-width: 180px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-        z-index: 190;
-      }
-      .nav-menu ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-      .nav-menu li + li {
-        margin-top: 8px;
-      }
-      .nav-menu a {
-        display: block;
-        padding: 6px 0;
-        font-size: 1rem;
-        font-weight: 600;
-        color: #fff;
-        position: relative;
-      }
-      .nav-menu a::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: -2px;
-        height: 2px;
-        background: var(--green);
-      }
-      .nav-menu li:last-child a::after {
-        display: none;
-      }
-      .nav-menu a:hover {
-        color: #BDFF20;
-      }
+/*this block will make the header semi-transparent and blur the background*/
+  /* make header background match the hero’s overlay */
 
-      /* ── SPACING BELOW FIXED HEADER ── */
-      main {
-        padding-top: 50px;
-      }
+      background: rgba(0, 0, 0, 0.5);    /* semi-transparent black */
+  backdrop-filter: blur(10px);       /* blur everything behind */
+  -webkit-backdrop-filter: blur(10px); /* for Safari */
 
-      /* ── HERO ── */
-      .hero {
-        margin-top: -50px;
-        padding-top: calc(260px + 50px);
-        position: relative;
-        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-                    url('assets/sky.jpg') center/cover no-repeat;
-        overflow: hidden;
-        text-align: center;
-        padding: 260px 20px;
-      }
-      .hero h1 {
-        font-size: 2rem;
-        line-height: 1.2;
-        color: #fff;
-        margin-bottom: 10px;
-      }
-      .hero h1 .highlight {
-        color: #BDFF20;
-      }
-      .hero p {
-        font-size: 1rem;
-        color: #eee;
-        margin-bottom: 20px;
-      }
-      .hero .btn {
-        display: inline-block;
-        padding: 12px 24px;
-        background: #BDFF20;
-        color: #000;
-        border-radius: 30px;
-        font-weight: 600;
-      }
-
-      /* ── SECTION NAV LABEL ── */
-      .section-nav {
-        text-align: center;
-        font-size: 1.7rem;
-        color: #BDFF20;
-        margin: 25px 0;
-      }
-      .section-nav b {
-        color: #BDFF20;
-      }
-
-      /* ── SCROLL MARGIN FOR #know-gv ── */
-      #know-gv {
-        scroll-margin-top: 112px;
-      }
-      #know-gv:target::before {
-        content: "";
-        display: block;
-        height: 112px;
-        margin-top: -112px;
-        visibility: hidden;
-      }
-
-      /* ── ABOUT & MISSION CARDS ── */
-      .mobile-card {
-        background: #333;
-        border-radius: 8px;
-        margin: 0 20px 12px;
-        padding: 16px;
-      }
-      .mobile-card h2 {
-        font-size: 1.1rem;
-        color: #BDFF20;
-        text-align: center;
-        margin-bottom: 8px;
-      }
-      .mobile-card p {
-        font-size: 0.9rem;
-        color: #ccc;
-        line-height: 1.4;
-      }
-
-      /* ── GV GOALS CARD ── */
-      .goals-card {
-        background: #333;
-        border-radius: 8px;
-        margin: 0 20px 20px;
-        padding: 16px;
-      }
-      .goals-card h2 {
-        font-size: 1.2rem;
-        color: #BDFF20;
-        text-align: center;
-        margin-bottom: 12px;
-      }
-      .goals-card h3 {
-        font-size: 1rem;
-        color: #fff;
-        margin-bottom: 4px;
-      }
-      .goals-card p {
-        font-size: 0.85rem;
-        color: #ccc;
-        margin-bottom: 8px;
-        line-height: 1.3;
-      }
-
-      /* ── SCROLL MARGIN FOR #events ── */
-      #events {
-        scroll-margin-top: 60px;
-      }
-      #events:target::before {
-        content: "";
-        display: block;
-        height: 60px;
-        margin-top: -60px;
-        visibility: hidden;
-      }
-
-      /* ── OUR EVENTS ── */
-      .event-card {
-        background: #333;
-        border-radius: 8px;
-        margin: 0 20px 20px;
-        padding: 16px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        align-items: flex-start;
-      }
-      .event-card .details {
-        flex: 1;
-        font-size: 0.9rem;
-        color: #fff;
-        line-height: 1.4;
-      }
-      .event-card .details h3 {
-        text-align: center;
-        margin-bottom: 8px;
-      }
-      .event-card .poster {
-        align-self: center;
-      }
-      .event-card .poster img {
-        display: block;
-        margin: 0 auto;
-        width: 80%;
-        max-width: 450px;
-        height: auto;
-        border-radius: 20px;
-      }
-
-      /* ── GV TEAM ── */
-      .team-grid {
-        display: flex;
-        gap: 12px;
-        overflow-x: auto;
-        padding: 0 20px 20px;
-      }
-      .team-card {
-        background: #333;
-        border-radius: 8px;
-        min-width: 100px;
-        padding: 12px;
-        text-align: center;
-      }
-      .team-card .avatar {
-        width: 60px;
-        height: 60px;
-        background: #555;
-        border-radius: 50%;
-        margin: 0 auto 8px;
-      }
-      .team-card p {
-        font-size: 0.85rem;
-        color: #fff;
-        line-height: 1.2;
-      }
-      .team-card.samar,
-      .team-card.niel {
-        width: 140px;
-        height: 160px;
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-      .team-card.samar .avatar,
-      .team-card.niel .avatar {
-        width: 90px;
-        height: 90px;
-        border-radius: 50%;
-        margin: 0 auto 12px;
-        box-sizing: border-box;
-      }
-      .team-card.niel {
-        margin-right: -40px;
-      }
-      .team-card.samar {
-        margin-left: 40px;
-      }
-
-      /* ── GAMERS TEAM ── */
-      .gamers-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-        margin: 0 20px 20px;
-      }
-      .gamers-card {
-        background: #333;
-        border-radius: 8px;
-        padding: 12px;
-        text-align: center;
-      }
-      .gamers-card .avatar {
-        width: 60px;
-        height: 60px;
-        background: #555;
-        border-radius: 50%;
-        margin: 0 auto 8px;
-      }
-      .gamers-card p {
-        font-size: 0.75rem;
-        color: #fff;
-        line-height: 1.2;
-      }
-      .gamers-card .avatar {
-        width: 80px;
-        height: 80px;
-      }
-
-      /* ── CONTACT US CARD ── */
-      #contact-us > h1 {
-        font-size: 1.7rem;
-      }
-      :root {
-        --green: #BDFF20;
-        --card-bg: #1a1a1a;
-      }
-      .card {
-        background: var(--card-bg);
-        border-radius: 20px;
-        padding: 24px 16px;
-        margin: 20px;
-      }
-      .form-button {
-        display: block;
-        border: 1px solid var(--green);
-        border-radius: 20px;
-        color: #fff;
-        font-weight: 600;
-        text-align: center;
-        text-decoration: none;
-        padding: 14px;
-        margin: 0 auto 32px;
-      }
-      .socials {
-        text-align: center;
-      }
-      .socials h2 {
-        font-size: 1.25rem;
-        margin-bottom: 16px;
-      }
-      .socials ul {
-        list-style: none;
-      }
-      .socials li {
-        margin: 8px 0;
-      }
     }
-  </style>
+    .logo { /* Logo text */
+      color: #BDFF20; /* Bright green */
+      font-size: 1.25rem; /* 1.25× root font-size */
+      font-weight: 600; /* Semi-bold */
+    }
+
+    /* ── HAMBURGER & NAV MENU ── */
+/* ── FROSTED-GLASS NAV MENU ── */
+:root {
+  --green: #BDFF20;            /* neon-green accent */
+  --menu-bg: rgba(0, 0, 50, .8);/* semi-transparent navy */
+}
+
+.hamburger {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 1.75rem;
+  color: var(--green);
+  cursor: pointer;
+  z-index: 200;
+}
+
+.nav-menu {
+  display: none;
+  position: fixed;
+  top: 50px;
+  right: 16px;
+  background: var(--menu-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 16px;
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  z-index: 190;
+}
+
+.nav-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li + li {
+  margin-top: 8px;
+}
+
+.nav-menu a {
+  display: block;
+  padding: 6px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  position: relative;
+}
+
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background: var(--green);
+}
+
+.nav-menu li:last-child a::after {
+  display: none;
+}
+
+    .nav-menu a:hover { /* Hover state for links */
+      color: #BDFF20; /* Turn text green on hover */
+    }
+
+    /* ── SPACING BELOW FIXED HEADER ── */
+    main { /* Main content wrapper */
+      padding-top: 50px; /* Space to account for fixed header */
+    }
+
+    /* ── HERO ── */
+    .hero { /* Hero section */
+/* 1. Your background image (update with your actual file) */
+  /* 1) Remove any .hero::before overlay you added */
+
+  margin-top: -50px;                     /* pull hero up beneath the 50px header */
+  padding-top: calc(260px + 50px);       /* add that 50px back so content stays in view */
+  position: relative;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url('assets/sky.jpg') center/cover no-repeat;
+  position: relative;   /* establish a positioning context */
+  overflow: hidden;     /* clip the overlay to the hero bounds */
+
+    /* 2. Keep your layout & centering for the text and button */
+
+  text-align: center; /* Center-align text */
+  padding: 260px 20px; /* 260px vertical, 20px horizontal */
+}
+
+    .hero h1 { /* Hero headline */
+      font-size: 2rem; /* 2× root font-size */
+      line-height: 1.2; /* 1.2× line height */
+      color: #fff; /* White text */
+      margin-bottom: 10px; /* Spacing below */
+    }
+    .hero h1 .highlight { /* Highlighted word */
+      color: #BDFF20; /* Green highlight */
+    }
+    .hero p { /* Hero paragraph */
+      font-size: 1rem; /* Normal size */
+      color: #eee; /* Light grey text */
+      margin-bottom: 20px; /* Spacing below */
+    }
+    .hero .btn { /* Hero button */
+      display: inline-block; /* Size to content */
+      padding: 12px 24px; /* Vertical/horizontal padding */
+      background: #BDFF20; /* Green background */
+      color: #000; /* Black text */
+      border-radius: 30px; /* Rounded corners */
+      font-weight: 600; /* Semi-bold */
+    }
+
+    /* ── SECTION NAV LABEL ── */
+    .section-nav { /* Section labels */
+      text-align: center; /* Center text */
+      font-size: 1.7rem; /* Normal font heading font change */ 
+      color: #BDFF20; /* White */
+      margin: 25px 0; /* Vertical spacing */
+    }
+    .section-nav b { /* Bold part of label */
+      color: #BDFF20; /* Green */
+    }
+
+
+/* 1. Modern: give #know-gv breathing room under the fixed header */
+#know-gv { /* Section ID for "Know GameVault" */
+  scroll-margin-top: 112px; /* <-- match this to your header height */
+}
+
+/* 2. Fallback: only when #know-gv is the :target (i.e. you just jumped to it) */
+#know-gv:target::before {
+  content: "";
+  display: block;
+  height: 112px;       /* same as your header’s height */
+  margin-top: -112px;  /* pull the real content up */
+  visibility: hidden;
+}
+
+    /* ── ABOUT & MISSION CARDS ── */
+    .mobile-card { /* Card wrapper */
+      background: #333; /* Dark grey */
+      border-radius: 8px; /* Rounded corners */
+      margin: 0 20px 12px; /* Horizontal and bottom margin */
+      padding: 16px; /* Internal padding */
+    }
+    .mobile-card h2 { /* Card title */
+      font-size: 1.1rem; /* Slightly larger */
+      color: #BDFF20; /* Green text */
+      text-align: center; /* Centered */
+      margin-bottom: 8px; /* Spacing below */
+    }
+    .mobile-card p { /* Card paragraph */
+      font-size: 0.9rem; /* Slightly smaller */
+      color: #ccc; /* Grey text */
+      line-height: 1.4; /* Readable line-height */
+    }
+
+    /* ── GV GOALS CARD ── */
+    .goals-card { /* Goals card container */
+      background: #333; /* Dark grey */
+      border-radius: 8px; /* Rounded corners */
+      margin: 0 20px 20px; /* Spacing */
+      padding: 16px; /* Internal padding */
+    }
+    .goals-card h2 { /* Goals title */
+      font-size: 1.2rem; /* Larger */
+      color: #BDFF20; /* Green */
+      text-align: center; /* Centered */
+      margin-bottom: 12px; /* Spacing */
+    }
+    .goals-card h3 { /* Individual goal heading */
+      font-size: 1rem; /* Normal size */
+      color: #fff; /* White */
+      margin-bottom: 4px; /* Spacing */
+    }
+    .goals-card p { /* Goal description */
+      font-size: 0.85rem; /* Slightly smaller */
+      color: #ccc; /* Grey */
+      margin-bottom: 8px; /* Spacing */
+      line-height: 1.3; /* Readable */
+    }
+
+
+
+/* 1. Modern: give #events breathing room under the fixed header 
+fix the scroll margin and height */
+#events { /* Section ID for "Know GameVault" */
+  scroll-margin-top: 60px; /* <-- match this to your header height */
+}
+
+/* 2. Fallback: only when #events is the :target (i.e. you just jumped to it) */
+#events:target::before {
+  content: "";
+  display: block;
+  height: 60px;       /* same as your header’s height */
+  margin-top: -60px;  /* pull the real content up */
+  visibility: hidden;
+}
+
+
+
+    /* ── OUR EVENTS ── */
+    .event-card { /* Event card container */
+      background: #333; /* Dark grey */
+      border-radius: 8px; /* Rounded corners */
+      margin: 0 20px 20px; /* Spacing */
+      padding: 16px; /* Internal padding */
+/* ↓ change here ↓ */
+  display: flex;              
+  flex-direction: column;     /* stack children vertically */
+  gap: 12px;                  /* space between description & poster */
+  align-items: flex-start;    /* align items to the left */
+}
+
+    .event-card .details { /* Event text details */
+      flex: 1; /* Take remaining space */
+      font-size: 0.9rem; /* Slightly smaller */
+      color: #fff; /* White text */
+      line-height: 1.4; /* Readable */
+    }
+    .event-card .details h3 { /* Event heading */
+      text-align: center; /* Centered */
+      margin-bottom: 8px; /* Spacing */
+    }
+
+.event-card .poster {
+  align-self: center;  /* moves the poster div to horizontal center */
+}
+
+
+    .event-card .poster img { /* Event poster image */
+display: block;      /* so margin auto works */
+  margin: 0 auto;      /* horizontally center the image */
+
+     width: 80%;       /* or whatever fits: 100%, 200px, etc */
+  max-width: 450px; /* safeguard larger screens */
+  height: auto;     /* maintain aspect ratio */
+  display: block;   /* so margin auto works if you need it */
+   border-radius: 20px; /* ← smooths the corners */
+     display: block;      /* so margin auto works */
+  margin: 0 auto;      /* horizontally center the image */
+    }
+
+
+    
+
+    /* ── GV TEAM ── */
+    .team-grid { /* Team cards container */
+      display: flex; /* Side-by-side */
+      gap: 12px; /* Spacing */
+      overflow-x: auto; /* Horizontal scroll if needed */
+      padding: 0 20px 20px; /* Padding */
+    }
+    .team-card { /* Individual team card */
+      background: #333; /* Dark grey */
+      border-radius: 8px; /* Rounded corners */
+      min-width: 100px; /* Ensure width */
+      padding: 12px; /* Internal padding */
+      text-align: center; /* Center contents */
+    }
+    .team-card .avatar { /* Avatar placeholder */
+      width: 60px; /* Diameter */
+      height: 60px; /* Diameter */
+      background: #555; /* Grey placeholder */
+      border-radius: 50%; /* Circle */
+      margin: 0 auto 8px; /* Center + bottom spacing */
+    }
+    .team-card p { /* Team member text */
+      font-size: 0.85rem; /* Slightly smaller */
+      color: #fff; /* White */
+      line-height: 1.2; /* Readable */
+    }
+
+    /* ONLY enlarge Samar & Niel’s cards */
+    .team-card.samar,
+    .team-card.niel { /* ← added */
+      width: 140px;      /* exact width for those two */ /* ← added */
+      height: 160px;     /* exact height for those two */ /* ← added */
+      padding: 10px;    /* extra inner spacing */ /* ← added */
+      display: flex;     /* center contents vertically */ /* ← added */
+      flex-direction: column; /* ← added */
+      justify-content: center; /* ← added */
+      align-items: center; /* ← added */
+    }
+
+    /* Samar & Niel: perfect symmetric avatars */
+    .team-card.samar .avatar,
+    .team-card.niel .avatar { /* ← added */
+      width: 90px;        /* exact square width */ /* ← added */
+      height: 90px;       /* exact square height */ /* ← added */
+      border-radius: 50%; /* perfect circle */ /* ← added */
+      margin: 0 auto 12px; /* center + bottom spacing */ /* ← added */
+      box-sizing: border-box; /* include padding in size */ /* ← added */
+    }
+
+    .team-card.niel { /* tweak horizontal offset */ /* ← added */
+      margin-right: -40px; /* ← added */
+    }
+    .team-card.samar { /* tweak horizontal offset */ /* ← added */
+      margin-left: 40px; /* ← added */
+    }
+
+    /* ── GAMERS TEAM ── */
+    .gamers-grid { /* Gamers grid layout */
+      display: grid; /* CSS grid */
+      grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+      gap: 12px; /* Gap */
+      margin: 0 20px 20px; /* Spacing */
+    }
+    .gamers-card { /* Individual gamer card */
+      background: #333; /* Dark grey */
+      border-radius: 8px; /* Rounded corners */
+      padding: 12px; /* Internal padding */
+      text-align: center; /* Center contents */
+    }
+    .gamers-card .avatar { /* Gamer avatar placeholder */
+      width: 60px; /* Diameter */
+      height: 60px; /* Diameter */
+      background: #555; /* Grey */
+      border-radius: 50%; /* Circle */
+      margin: 0 auto 8px; /* Center + bottom */
+    }
+    .gamers-card p { /* Gamer text */
+      font-size: 0.75rem; /* Smaller */
+      color: #fff; /* White */
+      line-height: 1.2; /* Readable */
+    }
+
+   /* Only enlarge the first two gamer cards */ 
+.gamers-card .avatar {
+  width: 80px;  /* original */
+  height: 80px; /* original */
+}
+
+
+    /* ── CONTACT US CARD ── */
+/* Change the Contact Us heading size */
+#contact-us > h1 {
+  font-size: 1.7rem;      /* adjust to taste: 1.5rem, 24px, etc. */
+}
+
+
+    :root { /* color variables */ /* ← added */
+      --green: #BDFF20; /* ← added */
+      --card-bg: #1a1a1a; /* ← added */
+    }
+    .card { /* container for Contact */ /* ← added */
+      background: var(--card-bg); /* ← added */
+      border-radius: 20px; /* ← added */
+      padding: 24px 16px; /* ← added */
+      margin: 20px; /* vertical spacing */ /* ← added */
+    }
+    .form-button { /* Google form link button */ /* ← added */
+      display: block; /* ← added */
+      border: 1px solid var(--green); /* ← added */
+      border-radius: 20px; /* ← added */
+      color: #fff; /* ← added */
+      font-weight: 600; /* ← added */
+      text-align: center; /* ← added */
+      text-decoration: none; /* ← added */
+      padding: 14px; /* ← added */
+      margin: 0 auto 32px; /* ← added */
+    }
+    .socials { /* Social links area */ /* ← added */
+      text-align: center; /* ← added */
+    }
+    .socials h2 { /* Socials heading */ /* ← added */
+      font-size: 1.25rem; /* ← added */
+      margin-bottom: 16px; /* ← added */
+    }
+    .socials ul { /* Reset list */ /* ← added */
+      list-style: none; /* ← added */
+    }
+    .socials li { /* Individual social */ /* ← added */
+      margin: 8px 0; /* ← added */
+    }
+
+
+  </style> <!-- End CSS -->
 </head>
 <body>
   <div id="progress"></div>
@@ -971,28 +1070,35 @@
     </section>
 
     <div class="section-nav"><b>‹ Our Events ›</b></div>
-    <section id="events" class="section" data-aos="fade-up">
-      <div class="event-list">
-        <div class="event-card" data-aos="fade-right">
-          <div class="event-text align-center">
-            <h5 class="event-subtitle">Upcoming Tournament</h5>
-            <h4>Barh Summer Royale BGMI Tournament</h4>
-            <p>Duration: 1 Day</p>
-            <p>Date: to be decided</p>
-            <p>Prize: 4000 Day</p>
-            <p>Location: Barh, Bihar</p>
-            <p>Venue: To be decided</p>
-            <p>Click for registration</p>
-            <p>Rules:</p>
-            <p>1. Only Squad entry</p>
-            <p>2. Barh Subdivision Gamers</p>
-          </div>
-          <div class="event-poster">
-            <img src="assets/p.png" alt="Event Poster"/>
-          </div>
-        </div>
+<!-- ── OUR EVENTS SECTION (replace your current one) ── -->
+<section id="events" class="section" data-aos="fade-up">
+  <div class="event-list">
+    <div class="event-card" data-aos="fade-right">
+      
+      <!-- TEXT PANEL: add a subheading and alignment class -->
+      <div class="event-text align-center">
+        <h5 class="event-subtitle">Upcoming Tournament</h5>
+        <h4>Barh Summer Royale BGMI Tournament</h4>
+        <p>Duration: 1 Day</p>
+        <p>Date: to be decided</p>
+        <p>Prize: 4000 Day</p>
+        <p>Location: Barh, Bihar</p>
+        <p>Venue: To be decided</p>
+        <p>Click for registration</p>
+        <p>Rules:</p>
+        <p>1. Only Squad entry</p>
+        <p>2. Barh Subdivision Gamers</p>
       </div>
-    </section>
+
+      <!-- IMAGE PANEL (unchanged HTML) -->
+      <div class="event-poster">
+        <img src="assets/p.png" alt="Event Poster"/>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
     <div class="section-nav"><b>‹ GV Team ›</b></div>
     <section id="team" class="section" data-aos="fade-up">
@@ -1055,6 +1161,7 @@
         <p>@instagram @youtube etc</p>
       </div>
     </section>
+
   </main>
 
   <!-- AOS & Custom Scripts -->
@@ -1062,6 +1169,7 @@
   <script>
     AOS.init({ duration:800, offset:100, once:false, mirror:true });
 
+    // Smooth AOS refresh on nav link click
     document.querySelectorAll('nav a').forEach(a =>
       a.addEventListener('click', () => setTimeout(() => AOS.refresh(), 500))
     );
@@ -1097,6 +1205,7 @@
       }
     }
 
+    // Prevent jump if clicking the same hash again
     document.querySelectorAll('#mainNav a').forEach(link => {
       link.addEventListener('click', (e) => {
         const targetHash = link.getAttribute('href');
