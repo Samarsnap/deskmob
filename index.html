@@ -654,7 +654,7 @@
 
     /* ── HAMBURGER & NAV MENU ── */
 /* ── FROSTED-GLASS NAV MENU ── */
- .mobile-only :root {
+ .mobile-only {
   --green: #BDFF20;            /* neon-green accent */
   --menu-bg: rgba(0, 0, 50, .8);/* semi-transparent navy */
 }
@@ -996,7 +996,7 @@ display: block;      /* so margin auto works */
 }
 
 
-    .mobile-only :root { /* color variables */ /* ← added */
+    .mobile-only { /* color variables */ /* ← added */
       --green: #BDFF20; /* ← added */
       --card-bg: #1a1a1a; /* ← added */
     }
@@ -1036,6 +1036,15 @@ display: block;      /* so margin auto works */
 <body>
 
   <!-- DESKTOP VERSION -->
+  <!-- DESKTOP VERSION -->  <!-- DESKTOP VERSION -->
+     <!-- DESKTOP VERSION -->
+        <!-- DESKTOP VERSION -->
+           <!-- DESKTOP VERSION -->
+              <!-- DESKTOP VERSION -->
+                 <!-- DESKTOP VERSION -->
+                    <!-- DESKTOP VERSION -->
+                       <!-- DESKTOP VERSION -->
+
   <div class="desktop-only">
 <body>
   <div id="progress"></div>
@@ -1193,6 +1202,12 @@ display: block;      /* so margin auto works */
 
   </main>
 
+  
+
+  <script>
+    console.log('Desktop scripts running');
+    /* desktop-only JavaScript here */
+  </script>
   <!-- AOS & Custom Scripts -->
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
@@ -1245,11 +1260,6 @@ display: block;      /* so margin auto works */
       });
     });
   </script>
-
-    <script>
-      console.log('Desktop scripts running');
-      // desktop-only JavaScript here
-    </script>
   </div>
 
   <!-- MOBILE VERSION -->
@@ -1418,17 +1428,18 @@ display: block;      /* so margin auto works */
 
   </main> <!-- End main content -->
 
-  <script> <!-- JavaScript at end of body -->
+
+
+  <script>
+    console.log('Mobile scripts running');
+    // mobile-only JavaScript here
+
+    // JavaScript at end of body
     function toggleMenu() { /* Toggle nav-menu visibility */
       const menu = document.getElementById('menu'); /* Grab menu by ID */
       menu.style.display = (menu.style.display === 'block') ? 'none' : 'block'; /* Show/hide */
     }
   </script>
-
-    <script>
-      console.log('Mobile scripts running');
-      // mobile-only JavaScript here
-    </script>
   </div>
 
 </body>
