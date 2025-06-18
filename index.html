@@ -9,7 +9,7 @@
     .desktop-only { display: block; }
     .mobile-only  { display: none;  }
 
-    @media (max-width: 768px) {
+    @media (max-width: 769px) {
       .desktop-only { display: none; }
       .mobile-only  { display: block; }
     }
@@ -620,12 +620,12 @@
 
 /* ── GLOBAL RESET & BASE ── */
     .mobile-only * { margin: 0; padding: 0; box-sizing: border-box; } /* Reset margins/padding, use border-box */
-    body { /* Base body styles */
+    .mobile-only body { /* Base body styles */
       font-family: 'Poppins', sans-serif; /* Use Poppins font */
       background: #000; /* Black background */
       color: #fff; /* White text */
     }
-    a { /* Anchor (<a>) base styles */
+    .mobile-only a { /* Anchor (<a>) base styles */
       color: inherit; /* Inherit text color */
       text-decoration: none; /* Remove underline */
     }
@@ -907,7 +907,7 @@ display: block;      /* so margin auto works */
       overflow-x: auto; /* Horizontal scroll if needed */
       padding: 0 20px 20px; /* Padding */
     }
-    .team-card { /* Individual team card */
+    .mobile-only .team-card { /* Individual team card */
       background: #333; /* Dark grey */
       border-radius: 8px; /* Rounded corners */
       min-width: 100px; /* Ensure width */
