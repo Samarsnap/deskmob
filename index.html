@@ -9,7 +9,7 @@
     .desktop-only { display: block; }
     .mobile-only  { display: none;  }
 
-    @media (max-width: 769px) {
+    @media (max-width: 768px) {
       .desktop-only { display: none; }
       .mobile-only  { display: block; }
     }
@@ -620,10 +620,22 @@
 
 /* ── GLOBAL RESET & BASE ── */
     .mobile-only * { margin: 0; padding: 0; box-sizing: border-box; } /* Reset margins/padding, use border-box */
-    .mobile-only body { /* Base body styles */
-      font-family: 'Poppins', sans-serif; /* Use Poppins font */
+    .mobile-only body 
+    { /* Base body styles */
+      font-family: 'Poppins', 
+      sans-serif; /* Use Poppins font */
       background: #000; /* Black background */
       color: #fff; /* White text */
+/* Main content wrapper */
+      padding-top: 50px; /* Space to account for fixed header */
+  
+  /* changes are here */
+      display: flex;
+  flex-direction: column;
+  align-items: center;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+
+
     }
     .mobile-only a { /* Anchor (<a>) base styles */
       color: inherit; /* Inherit text color */
@@ -717,11 +729,6 @@
 
     .mobile-only .nav-menu a:hover { /* Hover state for links */
       color: #BDFF20; /* Turn text green on hover */
-    }
-
-    /* ── SPACING BELOW FIXED HEADER ── */
-    .mobile-only main { /* Main content wrapper */
-      padding-top: 50px; /* Space to account for fixed header */
     }
 
     /* ── HERO ── */
@@ -1279,7 +1286,7 @@ display: block;      /* so margin auto works */
     <a href="#Home">Home</a> <!-- Scroll to hero -->
     <a href="#know-gv">Know GV</a> <!-- Scroll to about -->
     <a href="#events">Our Events</a> <!-- Scroll to events -->
-    <a href="#GV Teams">GV Team</a> <!-- Scroll to team -->
+    <a href="#GV-Teams">GV Team</a> <!-- Scroll to team -->
     <a href="#contact-us">Contact Us</a> <!-- Scroll to contact -->
   </div>
 
@@ -1361,7 +1368,7 @@ display: block;      /* so margin auto works */
     </section>
 
     <!-- GV TEAM SECTION -->
-    <section id="GV Teams"> <!-- Contact section anchor -->
+    <section id="GV-Teams"> <!-- Contact section anchor -->
 
     <div class="section-nav">◀ GV Team ▶</div>
     <section class="team-grid" id="team">
@@ -1441,6 +1448,5 @@ display: block;      /* so margin auto works */
     }
   </script>
   </div>
-
 </body>
 </html>
