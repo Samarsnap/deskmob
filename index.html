@@ -631,7 +631,7 @@
       padding-top: 50px; /* Space to account for fixed header */
   
   /* changes are here */
-      display: flex;
+      display: block; /* Use block layout */
   flex-direction: column;
   align-items: center;
       overflow-x: hidden; /* Prevent horizontal scroll */
@@ -646,10 +646,12 @@
     /* ── HEADER BAR ── */
      .mobile-only header { /* Site header */
       background: #333; /* Dark grey background */
-      padding: 10px 20px; /* 10px vertical, 20px horizontal padding */
+      padding: 0px 20px; /* 0px vertical, 20px horizontal padding */
       position: fixed; /* Fixed at top */
       top: 0; left: 0; width: 100%; /* Full-width, pinned to top-left */
       z-index: 100; /* Appear above other content */
+        box-sizing: border-box;
+
 
 /*this block will make the header semi-transparent and blur the background*/
   /* make header background match the hero’s overlay */
@@ -737,7 +739,7 @@
     .mobile-only .hero { /* Hero section */
 /* 1. Your background image (update with your actual file) */
   /* 1) Remove any .hero::before overlay you added */
-
+  width: 100%;                     /* full viewport width */
   margin-top: -50px;                     /* pull hero up beneath the 50px header */
   padding-top: calc(260px + 50px);       /* add that 50px back so content stays in view */
   background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
