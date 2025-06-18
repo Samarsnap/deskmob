@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -9,7 +10,7 @@
     .desktop-only { display: block; }
     .mobile-only  { display: none;  }
 
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
       .desktop-only { display: none; }
       .mobile-only  { display: block; }
     }
@@ -32,24 +33,24 @@
       color: #fff;
       line-height: 1.5;
     }
-    body {
+   .desktop-only body {
       margin: 0;
       padding: 0;
       box-sizing: inherit;
       overflow-y: visible;
     }
-    *, *::before, *::after {
+    .desktop-only *, .desktop-only *::before, .desktop-only *::after {
       margin: 0;
       padding: 0;
-      box-sizing: inherit;
+      box-sizing: border-box;
     }
-    a {
+    .desktop-only a {
       color: inherit;
       text-decoration: none;
     }
 
     /* ===== Header & Nav ===== */
-    #progress {
+    .desktop-only #progress {
       position: fixed;
       top: 0; left: 0;
       width: 0;
@@ -58,7 +59,7 @@
       z-index: 2000;
       transition: width .2s;
     }
-    header {
+   .desktop-only header {
       position: fixed;
       top: 0; left: 0;
       width: 100%;
@@ -71,25 +72,25 @@
       z-index: 1000;
       transition: background .3s;
     }
-    header.scrolled {
+    .desktop-only header.scrolled {
       background: rgba(0, 0, 0, 0.6);
     }
-    .logo {
+    .desktop-only .logo {
       font-size: 1.5rem;
       font-weight: 600;
       color: #BDFF20;
       cursor: pointer;
     }
-    nav {
+    .desktop-only nav {
       display: flex;
       gap: 30px;
     }
-    nav a {
+    .desktop-only nav a {
       position: relative;
       padding: 4px 0;
       font-weight: 500;
     }
-    nav a::after {
+    .desktop-only nav a::after {
       content: '';
       position: absolute;
       left: 0;
@@ -101,19 +102,19 @@
       transform-origin: right;
       transition: transform .3s;
     }
-    nav a:hover::after,
-    nav a.active::after {
+   .desktop-only nav a:hover::after,
+    .desktop-only nav a.active::after {
       transform: scaleX(1);
       transform-origin: left;
     }
-    .hamburger {
+   .desktop-only .hamburger {
       display: none;
       flex-direction: column;
       gap: 5px;
       cursor: pointer;
       transition: transform .2s;
     }
-    .hamburger span {
+   .desktop-only .hamburger span {
       display: block;
       width: 20px;
       height: 2px;
@@ -123,10 +124,10 @@
     }
 
     /* ===== Section Base ===== */
-    main {
+   .desktop-only main {
       padding-top: 100px;
     }
-    .section {
+   .desktop-only .section {
       max-width: 1200px;
       margin: 40px auto;
       padding: 0 60px;
@@ -135,13 +136,13 @@
       transform: translateY(0);
       transition: none;
     }
-    .section-title {
+   .desktop-only .section-title {
       text-align: center;
       font-size: 2rem;
       margin-bottom: 30px;
       position: relative;
     }
-    .section-title::after {
+   .desktop-only .section-title::after {
       content: '';
       width: 60px;
       height: 4px;
@@ -153,7 +154,7 @@
     }
 
 
-  #home.section {
+ .desktop-only #home.section {
     max-width: none;      /* allow it to grow to the viewport */
     width: 100vw;         /* force full viewport width */
     margin: 0;            /* cancel the auto-center */
@@ -161,13 +162,13 @@
   }
 
   /* 2) Cancel the global push-down so hero can slide up under the nav */
-  main {
+ .desktop-only main {
     padding-top: 0;   /* remove the 100px gap */
   }
 
     /* ===== Hero ===== */
     /* Desktop-only: ensure BG covers full viewport */
-    #home {
+   .desktop-only #home {
       /* Use explicit background properties instead of shorthand */
       background-image: url('assets/logo.jpg');   /* hero BG image */
       background-repeat: no-repeat;                /* no tiling */
@@ -183,32 +184,32 @@
     }
 
 
-    #home::after {
+   .desktop-only #home::after {
       content: '';
       position: absolute;
       inset: 0;
       background: rgba(0, 0, 0, 0.6);
     }
-    .hero-content {
+   .desktop-only .hero-content {
       position: relative;
       z-index: 1;
       text-align: center;
       max-width: 700px;
     }
-    .hero-content h1 .highlight {
+   .desktop-only .hero-content h1 .highlight {
       color: #BDFF20;
     }
-    .hero-content h1 {
+   .desktop-only .hero-content h1 {
       font-size: 4rem;
       margin-bottom: 20px;
       color: #fff;
     }
-    .hero-content p {
+    .desktop-only .hero-content p {
       font-size: 1.25rem;
       color: #ccc;
       margin-bottom: 30px;
     }
-    .btn {
+   .desktop-only .btn {
       padding: 16px 48px;
       background: #BDFF20;
       color: #000;
@@ -216,50 +217,50 @@
       border-radius: 30px;
       transition: transform .3s;
     }
-    .btn:hover {
+   .desktop-only .btn:hover {
       transform: scale(1.1) rotate(-1deg);
     }
 
   
     /* ===== Reduce gap under section-nav ===== */
-    .section-nav + .section {
+   .desktop-only .section-nav + .section {
       margin-top: 10px; /* reduced from 40px */
     }
 
     /* ===== About & Mission ===== */
-    .top-cards {
+   .desktop-only .top-cards {
       display: flex;
       gap: 20px;
       margin-bottom: 20px;
     }
-    .top-cards .card {
+   .desktop-only .top-cards .card {
       flex: 1;
       background: #222;
       border-radius: 12px;
       padding: 24px;
     }
-    .top-cards .card h2 {
+   .desktop-only .top-cards .card h2 {
       font-size: 1.8rem;
       margin-bottom: 12px;
       color: #fff;
     }
-    .top-cards .card p {
+   .desktop-only .top-cards .card p {
       font-size: 1rem;
       color: #eee;
       line-height: 1.5;
     }
 
     /* ── 1 & 2) Underlines under “ABOUT US” & “Our Mission” ── */
-.top-cards .card {
+   .desktop-only .top-cards .card {
   overflow: hidden;      /* optional: prevent any overflow */
 }
 
-.top-cards .card h2 {
+.desktop-only .top-cards .card h2 {
   position: relative;
   padding-bottom: 12px;  /* at least your bar’s height */
 }
 
-.top-cards .card h2::after {
+.desktop-only .top-cards .card h2::after {
   content: "";
   position: absolute;
   bottom: 4px;             /* move up/down */
@@ -272,7 +273,7 @@
 
 
     /* ===== Section-Nav Heading ===== */
-    .section-nav {
+   .desktop-only .section-nav {
       font-size: 2rem;
       font-weight: 600;
       color: #BDFF20;
@@ -284,7 +285,7 @@
     }
 
     /* ===== GV Goals ===== */
-    .goals-card {
+   .desktop-only .goals-card {
       background: #222;
       border-radius: 12px;
       padding: 40px 24px;
@@ -294,36 +295,36 @@
       gap: 40px 24px;
       align-items: start;
     }
-    .goals-card .title-area {
+    .desktop-only .goals-card .title-area {
       grid-column: 1;
       grid-row: 1 / span 2;
       position: relative;       /* ← make ::after absolute to this */
       padding-right: 16px;      /* ← room for the bar */
     }
-    .goals-card .title-area h2 {
+    .desktop-only .goals-card .title-area h2 {
       font-size: 2.5rem;
       line-height: 1.1;
       color: #fff;
       margin: 0;
     }
-    .goals-card .provide {
+   .desktop-only .goals-card .provide {
       grid-column: 2;
       grid-row: 1;
     }
-    .goals-card .promote {
+    .desktop-only .goals-card .promote {
       grid-column: 3;
       grid-row: 1;
     }
-    .goals-card .fun {
+    .desktop-only .goals-card .fun {
       grid-column: 2;
       grid-row: 2;
     }
-    .goals-card h3 {
+    .desktop-only .goals-card h3 {
       font-size: 1.2rem;
       margin-bottom: 8px;
       color: #fff;
     }
-    .goals-card p {
+    .desktop-only .goals-card p {
       font-size: 0.95rem;
       color: #ccc;
       margin-top: 4px;
@@ -331,13 +332,13 @@
 
     /* ── 3) Vertical bar next to “GV Goals” ── */
 /* make sure the container is positioned */
-.goals-card .title-area {
+.desktop-only .goals-card .title-area {
   position: relative;   /* ← your anchor for the ::after */
   padding-right: 12px;  /* ← at least the bar’s width so your text doesn’t bump into it */
 }
 
 /* the vertical bar itself */
-.goals-card .title-area::after {
+.desktop-only .goals-card .title-area::after {
   content: "";
   position: absolute;
 
@@ -359,8 +360,8 @@
  
 
 /* ── ABOUT US & Our Mission ── */
-.top-cards .card:nth-child(1) h2,   /* target “ABOUT US” */
-.top-cards .card:nth-child(2) h2 {  /* target “Our Mission” */
+.desktop-only .top-cards .card:nth-child(1) h2,   /* target “ABOUT US” */
+.desktop-only .top-cards .card:nth-child(2) h2 {  /* target “Our Mission” */
   /* ─ change the text colour ─ */
   color: #bdff20;            /* ← your new colour here */
 
@@ -378,7 +379,7 @@
 }
 
 /* ── GV Goals ── */
-.goals-card .title-area h2 {
+.desktop-only .goals-card .title-area h2 {
   /* ─ change the text colour ─ */
   color: #bdff20;            /* ← your new colour here */
 
@@ -402,17 +403,17 @@
 
 
     /* ===== Events ===== */
-    #events .subheading {
+  .desktop-only #events .subheading {
       font-size: 1.5rem;
       margin: 40px 0;
       color: #BDFF20;
       text-align: center;
     }
-    .event-list {
+  .desktop-only .event-list {
       display: grid;
       place-items: center;
     }
-    .event-card {
+    .desktop-only .event-card {
       display: flex;
       gap: 30px;
       background: #222;
@@ -423,34 +424,34 @@
       padding: 30px;
       transition: transform .3s, box-shadow .3s;
     }
-    .event-card .event-text {
+    .desktop-only .event-card .event-text {
       flex: 1;
     }
-    .event-card .event-text h4 {
+    .desktop-only .event-card .event-text h4 {
       margin-bottom: 12px;
       color: #fff;
     }
-    .event-card .event-text p {
+    .desktop-only .event-card .event-text p {
       margin-bottom: 8px;
       color: #ccc;
     }
-    .event-card .event-poster {
+    .desktop-only .event-card .event-poster {
       flex: 0 0 40%;
     }
-    .event-card .event-poster img {
+    .desktop-only .event-card .event-poster img {
       display: block;
       width: 100%;
       height: auto;
       border-radius: 6px;
     }
-    .event-card:hover {
+    .desktop-only .event-card:hover {
       transform: scale(1.02);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
     }
 
 
 
-  .event-subtitle {
+  .desktop-only .event-subtitle {
     font-size: 1.2rem;         /* size of the new sub-heading */
     color: #BDFF20;            /* neon green */
     margin-bottom: 16px;       /* space below it */
@@ -458,24 +459,24 @@
   }
 
   /* 2) Utility classes for text alignment */
-  .event-text.align-left   { text-align: left; }
+  .desktop-only .event-text.align-left   { text-align: left; }
 
  
 
     /* ===== Team ===== */
-    #team .team-members {
+    .desktop-only #team .team-members {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
       justify-content: center;
       perspective: 1000px;
     }
-    .team-members > .section-title {
+    .desktop-only .team-members > .section-title {
       flex: 0 0 100%;
       margin: 30px 0;
       text-align: center;
     }
-    #team .team-card {
+    .desktop-only #team .team-card {
       flex: 1;
       max-width: 48%;
       background: #222;
@@ -487,10 +488,10 @@
       flex-direction: column;
       align-items: center;
     }
-    #team .team-card:hover {
+    .desktop-only #team .team-card:hover {
       transform: translateY(-10px) rotateZ(0deg);
     }
-    #team .team-card img {
+    .desktop-only #team .team-card img {
       width: 200px;
       height: 200px;
       object-fit: cover;
@@ -498,7 +499,7 @@
       margin: 0 auto 16px;
       display: block;
     }
-    .team-card.horizontal {
+    .desktop-only .team-card.horizontal {
       flex: 0 0 auto;
       max-width: none;
       width: 360px;
@@ -507,84 +508,84 @@
       position: relative;
       overflow: hidden;
     }
-    .team-card.horizontal .text-container,
-    .team-card.horizontal img {
+    .desktop-only .team-card.horizontal .text-container,
+    .desktop-only .team-card.horizontal img {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
     }
-    .team-card.horizontal.sam .text-container {
+    .desktop-only .team-card.horizontal.sam .text-container {
       left: 120px;
       text-align: center;
     }
-    .team-card.horizontal.sam img {
+    .desktop-only .team-card.horizontal.sam img {
       right: 24px;
       width: 120px;
       height: 120px;
       border-radius: 50%;
       object-fit: cover;
     }
-    .team-card.horizontal.niel img {
+    .desktop-only .team-card.horizontal.niel img {
       left: 24px;
       width: 120px;
       height: 120px;
       border-radius: 50%;
       object-fit: cover;
     }
-    .team-card.horizontal.niel .text-container {
+    .desktop-only .team-card.horizontal.niel .text-container {
       right: 150px;
       text-align: center;
     }
-    .team-card.horizontal {
+    .desktop-only .team-card.horizontal {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
       text-align: left;
       padding: 24px 32px;
     }
-    .team-card.horizontal img {
+    .desktop-only .team-card.horizontal img {
       margin: 0;
     }
-    .team-card.horizontal .text-container {
+    .desktop-only .team-card.horizontal .text-container {
       display: flex;
       flex-direction: column;
       justify-content: center;
       flex: 1;
     }
-    .team-card.horizontal .text-container h3 {
+    .desktop-only .team-card.horizontal .text-container h3 {
       font-size: 1.5rem;
       margin-bottom: 4px;
     }
-    .team-card.horizontal .text-container p {
+    .desktop-only .team-card.horizontal .text-container p {
       font-size: 1rem;
     }
 
     /* ===== Contact ===== */
-    #contact {
+    .desktop-only #contact {
       padding: 80px 0;
       background: #000;
     }
-    #contact .contact-main-row {
+    .desktop-only #contact .contact-main-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       max-width: 800px;
       margin: 0 auto 24px;
     }
-    #contact .contact-main-row .contact-item {
+    .desktop-only #contact .contact-main-row .contact-item {
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
-    #contact .contact-main-row .contact-item.partnerships {
+    .desktop-only #contact .contact-main-row .contact-item.partnerships {
       align-items: center;
       margin-left: 50px;
     }
-    #contact .contact-main-row .contact-item.support {
+    .desktop-only #contact .contact-main-row .contact-item.support {
       align-items: center;
       margin-right: 50px;
     }
-    #contact .social-panel {
+    .desktop-only #contact .social-panel {
       background: #222;
       border-radius: 12px;
       padding: 24px;
@@ -592,19 +593,19 @@
       margin: 0 auto;
       text-align: center;
     }
-    #contact .social-panel h4 {
+    .desktop-only #contact .social-panel h4 {
       color: #fff;
       font-size: 1.25rem;
       margin: 0 0 8px;
     }
-    #contact .social-panel p {
+    .desktop-only #contact .social-panel p {
       color: #ccc;
       font-size: 1rem;
       margin: 0;
     }
 
     /* hide by default */
-    .close-btn {
+    .desktop-only .close-btn {
       display: none;
     }
     
@@ -682,8 +683,9 @@
 }
 
 .mobile-only .nav-menu {
-  display: none;
-  position: fixed;
+  display: flex;
+  flex-direction: column;
+ /* position: fixed; */ /* keep it relative to the header */
   top: 50px;
   right: 16px;
   background: var(--menu-bg);
@@ -715,7 +717,7 @@
   position: relative;
 }
 
-.mobile-only .nav-menu a::after {
+.mobile-only .nav-menu  a::after {
   content: "";
   position: absolute;
   left: 0; right: 0; bottom: -2px;
@@ -738,7 +740,6 @@
 
   margin-top: -50px;                     /* pull hero up beneath the 50px header */
   padding-top: calc(260px + 50px);       /* add that 50px back so content stays in view */
-  position: relative;
   background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
     url('assets/sky.jpg') center/cover no-repeat;
   position: relative;   /* establish a positioning context */
@@ -1053,7 +1054,6 @@ display: block;      /* so margin auto works */
                        <!-- DESKTOP VERSION -->
 
   <div class="desktop-only">
-<body>
   <div id="progress"></div>
   <header>
     <div class="logo">GameVault</div>
@@ -1310,7 +1310,7 @@ display: block;      /* so margin auto works */
     <div class="section-nav">△ <b>Know GameVault</b> △</div>
 
     <!-- ABOUT US CARD -->
-         <section id="Know GV"> <!-- Contact section anchor -->
+         <section id="know-gv"> <!-- Contact section anchor -->
 
 <section class="mobile-card" id="know-gv">
       <h2>ABOUT US</h2>
