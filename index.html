@@ -606,7 +606,24 @@
                 /* 3) Mobile‐only CSS: */
 
 /* ── GLOBAL RESET & BASE ── */
-    .mobile-only * { margin: 0; padding: 0; box-sizing: border-box;} /* Reset margins/padding, use border-box */
+/* reset your wrapper just like you would <body> */
+.mobile-only {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+    .mobile-only *, 
+    .mobile-only *::before, 
+    .mobile-only *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    .mobile-only * 
+    { margin: 0; padding: 0; box-sizing: border-box;} /* Reset margins/padding, use border-box */
     .mobile-only body 
     { /* Base body styles */
       font-family: 'Poppins', 
@@ -632,15 +649,13 @@
     /* ── HEADER BAR ── */
      .mobile-only header { /* Site header */
       background: #333; /* Dark grey background */
-      padding: 10px 20px; /* 10px vertical, 20px horizontal padding */
+      padding: 0px 20px; /* 0px vertical, 20px horizontal padding */
       position: fixed; /* Fixed at top */
-      top: 0; left: 0; 
-      width: 100%; /* Full-width, pinned to top-left */
+      top: 0; left: 0; width: 100%; /* Full-width, pinned to top-left */
       z-index: 100; /* Appear above other content */
       box-sizing: border-box;
-  display: flex;
-  justify-content: space-between; /* Space between logo and menu */
-  align-items: center; /* Center items vertically */
+
+
 /*this block will make the header semi-transparent and blur the background*/
   /* make header background match the hero’s overlay */
 
@@ -663,8 +678,7 @@
 }
 
  .mobile-only .hamburger {
-  position: relative;  /* default flow */
-   margin: 0;           /* remove the top/right offsets */
+  position: absolute;
   top: 12px;
   right: 20px;
   font-size: 1.75rem;
