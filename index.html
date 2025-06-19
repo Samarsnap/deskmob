@@ -685,7 +685,7 @@
 }
 
 .mobile-only .nav-menu {
-  display: flex;
+  display:  none;     /* hide off‐canvas by default */
   flex-direction: column;
  /* position: fixed; */ /* keep it relative to the header */
   top: 50px;
@@ -743,7 +743,7 @@
   margin-top: -50px;                     /* pull hero up beneath the 50px header */
   padding-top: calc(260px + 50px);       /* add that 50px back so content stays in view */
   background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-    url('assets/sky.jpg') center/cover no-repeat;
+  url('assets/sky.jpg') center/cover no-repeat;
   position: relative;   /* establish a positioning context */
   overflow: hidden;     /* clip the overlay to the hero bounds */
 
@@ -872,7 +872,7 @@ fix the scroll margin and height */
       margin: 0 20px 20px; /* Spacing */
       padding: 16px; /* Internal padding */
 /* ↓ change here ↓ */
-  display: flex;              
+  display: flex; /* hide by default */             
   flex-direction: column;     /* stack children vertically */
   gap: 12px;                  /* space between description & poster */
   align-items: flex-start;    /* align items to the left */
