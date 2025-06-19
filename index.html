@@ -607,40 +607,37 @@
 
 /* ── GLOBAL RESET & BASE ── */
 /* reset your wrapper just like you would <body> */
+/* make the wrapper itself a flex container if you need flex alignment */
 .mobile-only {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   width: 100%;
-}
 
-    .mobile-only *, 
-    .mobile-only *::before, 
-    .mobile-only *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    .mobile-only * 
-    { margin: 0; padding: 0; box-sizing: border-box;} /* Reset margins/padding, use border-box */
-    .mobile-only body 
-    { /* Base body styles */
-      font-family: 'Poppins', 
-      sans-serif; /* Use Poppins font */
-      background: #000; /* Black background */
-      color: #fff; /* White text */
-/* Main content wrapper */
-      padding-top: 50px; /* Space to account for fixed header */
-  
-  /* changes are here */
-      display: block; /* Use block layout */
+  /* if you want column layout and centering: */
+  display: flex;
   flex-direction: column;
   align-items: center;
-      overflow-x: hidden; /* Prevent horizontal scroll */
+}
 
+/* one universal reset under that wrapper */
+.mobile-only *, 
+.mobile-only *::before, 
+.mobile-only *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    }
+/* now style the wrapper as needed for spacing under the fixed header */
+.mobile-only {
+  padding-top: 50px;
+  overflow-x: hidden;
+  background: #000;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
     .mobile-only a { /* Anchor (<a>) base styles */
       color: inherit; /* Inherit text color */
       text-decoration: none; /* Remove underline */
