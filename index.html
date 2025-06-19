@@ -608,26 +608,24 @@
 /* ── GLOBAL RESET & BASE ── */
 /* reset your wrapper just like you would <body> */
 /* make the wrapper itself a flex container if you need flex alignment */
-.mobile-only {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-
-  /* if you want column layout and centering: */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* one universal reset under that wrapper */
-.mobile-only *, 
-.mobile-only *::before, 
-.mobile-only *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+    /* ── MOBILE RESET & BASE ── */
+    .mobile-only {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    .mobile-only *, 
+    .mobile-only *::before, 
+    .mobile-only *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
 /* now style the wrapper as needed for spacing under the fixed header */
 .mobile-only {
@@ -644,23 +642,24 @@
     }
 
     /* ── HEADER BAR ── */
-     .mobile-only header { /* Site header */
-      background: #333; /* Dark grey background */
-      padding: 0px 20px; /* 0px vertical, 20px horizontal padding */
-      position: fixed; /* Fixed at top */
-      top: 0; left: 0; width: 100%; /* Full-width, pinned to top-left */
-      z-index: 100; /* Appear above other content */
-      box-sizing: border-box;
-
-
-/*this block will make the header semi-transparent and blur the background*/
-  /* make header background match the hero’s overlay */
-
-      background: rgba(0, 0, 0, 0.5);    /* semi-transparent black */
-  backdrop-filter: blur(10px);       /* blur everything behind */
-  -webkit-backdrop-filter: blur(10px); /* for Safari */
-
+    .mobile-only header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      padding: 10px 20px;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 100;
     }
+
+    .mobile-only header > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+
     .mobile-only .logo { /* Logo text */
       color: #BDFF20; /* Bright green */
       font-size: 1.25rem; /* 1.25× root font-size */
@@ -669,36 +668,32 @@
 
     /* ── HAMBURGER & NAV MENU ── */
 /* ── FROSTED-GLASS NAV MENU ── */
- .mobile-only {
-  --green: #BDFF20;            /* neon-green accent */
-  --menu-bg: rgba(0, 0, 50, .8);/* semi-transparent navy */
-}
 
  .mobile-only .hamburger {
-  position: absolute;
-  top: 12px;
-  right: 20px;
-  font-size: 1.75rem;
-  color: var(--green);
-  cursor: pointer;
-  z-index: 200;
-}
+      background: none;
+      border: none;
+      font-size: 1.75rem;
+      color: #BDFF20;
+      cursor: pointer;
+      z-index: 200;
+    }
 
-.mobile-only .nav-menu {
-  display:  none;     /* hide off‐canvas by default */
-  flex-direction: column;
- /* position: fixed; */ /* keep it relative to the header */
-  top: 50px;
-  right: 16px;
-  background: var(--menu-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 12px;
-  padding: 16px;
-  min-width: 180px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  z-index: 190;
-}
+    /* ── OFF-CANVAS NAV ── */
+    .mobile-only .nav-menu {
+      position: absolute;
+      top: 50px;
+      right: 16px;
+      display: none;            /* hidden by default */
+      flex-direction: column;
+      background: rgba(0, 0, 50, .8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 16px;
+      min-width: 180px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      z-index: 190;
+    }
 
 .mobile-only .nav-menu ul {
   list-style: none;
@@ -710,47 +705,47 @@
   margin-top: 8px;
 }
 
-.mobile-only .nav-menu a {
-  display: block;
-  padding: 6px 0;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #fff;
-  position: relative;
-}
+    .mobile-only .nav-menu a {
+      display: block;
+      padding: 6px 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      position: relative;
+    }
 
-.mobile-only .nav-menu  a::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: -2px;
-  height: 2px;
-  background: var(--green);
-}
+    .mobile-only .nav-menu a::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -2px;
+      height: 2px;
+      background: #BDFF20;
+    }
 
 .mobile-only .nav-menu li:last-child a::after {
   display: none;
 }
 
-    .mobile-only .nav-menu a:hover { /* Hover state for links */
-      color: #BDFF20; /* Turn text green on hover */
+    .mobile-only .nav-menu a:hover {
+      color: #BDFF20;
     }
 
-    /* ── HERO ── */
-    .mobile-only .hero { /* Hero section */
-/* 1. Your background image (update with your actual file) */
-  /* 1) Remove any .hero::before overlay you added */
-  margin-top: -50px;                     /* pull hero up beneath the 50px header */
-  padding-top: calc(260px + 50px);       /* add that 50px back so content stays in view */
-  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-  url('assets/sky.jpg') center/cover no-repeat;
-  position: relative;   /* establish a positioning context */
-  overflow: hidden;     /* clip the overlay to the hero bounds */
+  /* ── SPACING BELOW FIXED HEADER ── */
+    .mobile-only main {
+      margin-top: 50px;  /* push content beneath the header */
+    }
 
-    /* 2. Keep your layout & centering for the text and button */
-
-  text-align: center; /* Center-align text */
-  padding: 260px 20px; /* 260px vertical, 20px horizontal */
-}
+      /* ── HERO ── */
+    .mobile-only .hero {
+      margin-top: -50px;                     /* pull hero under header */
+      padding-top: calc(260px + 50px);       /* re-add that space */
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                  url('assets/sky.jpg') center/cover no-repeat;
+      text-align: center;
+      padding: 260px 20px;
+      position: relative;
+      overflow: hidden;
+    }
 
     .mobile-only .hero h1 { /* Hero headline */
       font-size: 2rem; /* 2× root font-size */
@@ -1273,16 +1268,12 @@ display: block;      /* so margin auto works */
   <!-- MOBILE VERSION -->
   <div class="mobile-only">
     <!-- HEADER -->
-  <header> <!-- Fixed header at top -->
-    <div style="display: flex; 
-    justify-content: space-between; 
-    align-items: center;">
-      <!-- Flex container for logo + hamburger -->
-      <div class="logo">GameVault</div> <!-- Logo text element -->
-      <div class="hamburger" onclick="toggleMenu()">☰</div>
-       <!-- Hamburger icon toggles nav -->
-    </div>
-  </header>
+    <header>
+      <div>
+        <div class="logo">GameVault</div>
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+      </div>
+    </header>
 
   <!-- NAV MENU (hidden by default) -->
   <div class="nav-menu" id="menu"> <!-- Slide-in menu panel -->
@@ -1441,10 +1432,7 @@ display: block;      /* so margin auto works */
 
 
   <script>
-    console.log('Mobile scripts running');
-    // mobile-only JavaScript here
-
-    // JavaScript at end of body
+    // Mobile-only JavaScript
     function toggleMenu() { /* Toggle nav-menu visibility */
       const menu = document.getElementById('menu'); /* Grab menu by ID */
       menu.style.display = (menu.style.display === 'block') ? 'none' : 'block'; /* Show/hide */
