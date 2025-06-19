@@ -107,21 +107,7 @@
       transform: scaleX(1);
       transform-origin: left;
     }
-   .desktop-only .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      transition: transform .2s;
-    }
-   .desktop-only .hamburger span {
-      display: block;
-      width: 20px;
-      height: 2px;
-      background: #fff;
-      border-radius: 2px;
-      transition: transform .3s, opacity .3s;
-    }
+
 
     /* ===== Section Base ===== */
    .desktop-only main {
@@ -620,7 +606,7 @@
                 /* 3) Mobile‐only CSS: */
 
 /* ── GLOBAL RESET & BASE ── */
-    .mobile-only * { margin: 0; padding: 0;} /* Reset margins/padding, use border-box */
+    .mobile-only * { margin: 0; padding: 0; box-sizing: border-box;} /* Reset margins/padding, use border-box */
     .mobile-only body 
     { /* Base body styles */
       font-family: 'Poppins', 
@@ -650,7 +636,7 @@
       position: fixed; /* Fixed at top */
       top: 0; left: 0; width: 100%; /* Full-width, pinned to top-left */
       z-index: 100; /* Appear above other content */
-        box-sizing: border-box;
+      box-sizing: border-box;
 
 
 /*this block will make the header semi-transparent and blur the background*/
@@ -739,7 +725,6 @@
     .mobile-only .hero { /* Hero section */
 /* 1. Your background image (update with your actual file) */
   /* 1) Remove any .hero::before overlay you added */
-  width: 100%;                     /* full viewport width */
   margin-top: -50px;                     /* pull hero up beneath the 50px header */
   padding-top: calc(260px + 50px);       /* add that 50px back so content stays in view */
   background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
@@ -1275,7 +1260,9 @@ display: block;      /* so margin auto works */
   <div class="mobile-only">
     <!-- HEADER -->
   <header> <!-- Fixed header at top -->
-    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="display: flex; 
+    justify-content: space-between; 
+    align-items: center;">
       <!-- Flex container for logo + hamburger -->
       <div class="logo">GameVault</div> <!-- Logo text element -->
       <div class="hamburger" onclick="toggleMenu()">☰</div>
