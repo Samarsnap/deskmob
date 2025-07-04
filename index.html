@@ -609,430 +609,342 @@
 /* reset your wrapper just like you would <body> */
 /* make the wrapper itself a flex container if you need flex alignment */
     /* ── MOBILE RESET & BASE ── */
-    .mobile-only {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      font-family: 'Poppins', sans-serif;
-      background: #000;
-      color: #fff;
-      overflow-x: hidden;
-    }
-    .mobile-only *, 
-    .mobile-only *::before, 
-    .mobile-only *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-/* now style the wrapper as needed for spacing under the fixed header */
-.mobile-only {
-  padding-top: 50px;
-  overflow-x: hidden;
-  background: #000;
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 160px; /* match your fixed header height */
 }
 
-    .mobile-only a { /* Anchor (<a>) base styles */
-      color: inherit; /* Inherit text color */
-      text-decoration: none; /* Remove underline */
-    }
+    /* GLOBAL RESET & BASE */
+    .mobile-only * { margin: 0; padding: 0; box-sizing: border-box; }
+    .mobile-only body { font-family: 'Poppins', sans-serif; background: #000; color: #fff; }
+    .mobile-only a { color: inherit; text-decoration: none; }
 
-    /* ── HEADER BAR ── */
+    /* HEADER BAR */
     .mobile-only header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      padding: 10px 20px;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0,0,0,0.5);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
+      padding: 20px 20px;
+      position: fixed;
+      top: 0; left: 0; width: 100%;
       z-index: 100;
     }
-
-    .mobile-only header > div {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-
-    .mobile-only .logo { /* Logo text */
-      color: #BDFF20; /* Bright green */
-      font-size: 1.25rem; /* 1.25× root font-size */
-      font-weight: 600; /* Semi-bold */
-    }
-
-    /* ── HAMBURGER & NAV MENU ── */
-/* ── FROSTED-GLASS NAV MENU ── */
-
- .mobile-only .hamburger {
-      background: none;
-      border: none;
-      font-size: 1.75rem;
+    .mobile-only .logo {
       color: #BDFF20;
-      cursor: pointer;
-      z-index: 200;
-    }
-
-    /* ── OFF-CANVAS NAV ── */
-    .mobile-only .nav-menu {
-      position: absolute;
-      top: 50px;
-      right: 16px;
-      display: none;            /* hidden by default */
-      flex-direction: column;
-      background: rgba(0, 0, 50, .8);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 12px;
-      padding: 16px;
-      min-width: 180px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      z-index: 190;
-    }
-
-.mobile-only .nav-menu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.mobile-only .nav-menu li + li {
-  margin-top: 8px;
-}
-
-    .mobile-only .nav-menu a {
-      display: block;
-      padding: 6px 0;
-      font-size: 1rem;
+      font-size: 1.25rem;
       font-weight: 600;
-      color: #fff;
-      position: relative;
     }
 
-    .mobile-only .nav-menu a::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0; bottom: -2px;
-      height: 2px;
-      background: #BDFF20;
+    /* HAMBURGER & NAV MENU */
+    .mobile-only :root {
+      --m3-surface: #ffffff;
+      --m3-on-surface: #1f1f1f;
+      --m3-elevation: 0px 4px 16px rgba(0,0,0,0.2);
+      --m3-radius: 16px;
+      --m3-padding: 24px;
+    }
+    .mobile-only .m3-drawer {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.4);
+      z-index: 1000;
+    }
+    .mobile-only .m3-drawer.open {
+      display: flex;
+    }
+    .mobile-only .m3-list {
+      list-style: none;
+      background: var(--m3-surface);
+      border-radius: var(--m3-radius);
+      box-shadow: var(--m3-elevation);
+      padding: var(--m3-padding);
+      width: 80%; max-width: 300px;
+      margin: 0;
+    }
+    .mobile-only .m3-list li + li {
+      margin-top: 16px;
+    }
+    .mobile-only .m3-list a {
+      display: block;
+      text-decoration: none;
+      color: var(--m3-on-surface);
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 12px;
+      border-radius: 8px;
+      transition: background .2s;
+    }
+    .mobile-only .m3-list a:hover {
+      background: rgba(0,0,0,0.05);
+    }
+    .mobile-only .m3-hamburger {
+      position: fixed;
+      top: 12px;
+      right: 20px;
+      width: 30px; height: 30px;
+      border: none;
+      border-radius: var(--m3-radius);
+      background: var(--m3-surface);
+      box-shadow: var(--m3-elevation);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .2s;
+      z-index: 1001;
+    }
+    .mobile-only .m3-hamburger:hover {
+      background: #f0f0f0;
+    }
+    .mobile-only .m3-hamburger svg {
+      width: 24px; height: 24px;
+      color: var(--m3-on-surface);
     }
 
-.mobile-only .nav-menu li:last-child a::after {
-  display: none;
-}
+    /* MAIN PADDING */
+    main { padding-top: 80px; }
 
-    .mobile-only .nav-menu a:hover {
-      color: #BDFF20;
-    }
+    /* ANIMATION KEYFRAMES */
+    @keyframes slideInUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-  /* ── SPACING BELOW FIXED HEADER ── */
-    .mobile-only main {
-      margin-top: 50px;  /* push content beneath the header */
-    }
-
-      /* ── HERO ── */
+    /* HERO */
     .mobile-only .hero {
-      margin-top: -50px;                     /* pull hero under header */
-      padding-top: calc(260px + 50px);       /* re-add that space */
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-                  url('assets/assets/colorevening.jpg') center/cover no-repeat;
-      text-align: center;
-      padding: 260px 20px;
       position: relative;
       overflow: hidden;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                  url('assets/sky.jpg') center/cover no-repeat;
+      animation: slideInUp .8s ease-out both;
+      text-align: center;
+      padding: 260px 20px;
+    }
+    .mobile-only .hero h1 {
+      font-size: 2rem;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .mobile-only .hero h1 .highlight {
+      color: #BDFF20;
+    }
+    .mobile-only .hero p {
+      font-size: 1rem;
+      color: #eee;
+      margin-bottom: 20px;
+    }
+    .mobile-only .hero .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #BDFF20;
+      color: #000;
+      border-radius: 30px;
+      font-weight: 600;
+      animation: pulse 2s ease-in-out 1s infinite;
     }
 
-    .mobile-only .hero h1 { /* Hero headline */
-      font-size: 2rem; /* 2× root font-size */
-      line-height: 1.2; /* 1.2× line height */
-      color: #fff; /* White text */
-      margin-bottom: 10px; /* Spacing below */
+    /* SECTION NAV LABEL */
+    .mobile-only .section-nav {
+      text-align: center;
+      font-size: 1.7rem;
+      color: #BDFF20;
+      margin: 25px 0;
     }
-    .mobile-only .hero h1 .highlight { /* Highlighted word */
-      color: #BDFF20; /* Green highlight */
-    }
-    .mobile-only .hero p { /* Hero paragraph */
-      font-size: 1rem; /* Normal size */
-      color: #eee; /* Light grey text */
-      margin-bottom: 20px; /* Spacing below */
-    }
-    .mobile-only .hero .btn { /* Hero button */
-      display: inline-block; /* Size to content */
-      padding: 12px 24px; /* Vertical/horizontal padding */
-      background: #BDFF20; /* Green background */
-      color: #000; /* Black text */
-      border-radius: 30px; /* Rounded corners */
-      font-weight: 600; /* Semi-bold */
+    .mobile-only .section-nav b {
+      color: #BDFF20;
     }
 
-    /* ── SECTION NAV LABEL ── */
-    .mobile-only .section-nav { /* Section labels */
-      text-align: center; /* Center text */
-      font-size: 1.7rem; /* Normal font heading font change */ 
-      color: #BDFF20; /* White */
-      margin: 25px 0; /* Vertical spacing */
-    }
-    .mobile-only .section-nav b { /* Bold part of label */
-      color: #BDFF20; /* Green */
-    }
+    .mobile-only #know-gv { scroll-margin-top: 80px; }
+    .mobile-only #events   { scroll-margin-top: 80px; }
+    .mobile-only #teams    { scroll-margin-top: 80px; }
 
-
-/* 1. Modern: give #know-gv breathing room under the fixed header */
- .mobile-only #know-gv { /* Section ID for "Know GameVault" */
-  scroll-margin-top: 112px; /* <-- match this to your header height */
-}
-
-/* 2. Fallback: only when #know-gv is the :target (i.e. you just jumped to it) */
- .mobile-only #know-gv:target::before {
-  content: "";
-  display: block;
-  height: 112px;       /* same as your header’s height */
-  margin-top: -112px;  /* pull the real content up */
-  visibility: hidden;
-}
-
-    /* ── ABOUT & MISSION CARDS ── */
-    .mobile-only .mobile-card { /* Card wrapper */
-      background: #333; /* Dark grey */
-      border-radius: 8px; /* Rounded corners */
-      margin: 0 20px 12px; /* Horizontal and bottom margin */
-      padding: 16px; /* Internal padding */
+    /* ABOUT & MISSION CARDS */
+    .mobile-only .mobile-card {
+      background: #333;
+      border-radius: 8px;
+      margin: 0 20px 12px;
+      padding: 16px;
     }
-    .mobile-only .mobile-card h2 { /* Card title */
-      font-size: 1.1rem; /* Slightly larger */
-      color: #BDFF20; /* Green text */
-      text-align: center; /* Centered */
-      margin-bottom: 8px; /* Spacing below */
+    .mobile-only .mobile-card h2 {
+      font-size: 1.1rem;
+      color: #BDFF20;
+      text-align: center;
+      margin-bottom: 8px;
     }
-    .mobile-only .mobile-card p { /* Card paragraph */
-      font-size: 0.9rem; /* Slightly smaller */
-      color: #ccc; /* Grey text */
-      line-height: 1.4; /* Readable line-height */
+    .mobile-only .mobile-card p {
+      font-size: 0.9rem;
+      color: #ccc;
+      line-height: 1.4;
     }
 
-    /* ── GV GOALS CARD ── */
-     .mobile-only .goals-card { /* Goals card container */
-      background: #333; /* Dark grey */
-      border-radius: 8px; /* Rounded corners */
-      margin: 0 20px 20px; /* Spacing */
-      padding: 16px; /* Internal padding */
+    /* GOALS CARD */
+    .mobile-only .goals-card {
+      background: #333;
+      border-radius: 8px;
+      margin: 0 20px 20px;
+      padding: 16px;
     }
-     .mobile-only .goals-card h2 { /* Goals title */
-      font-size: 1.2rem; /* Larger */
-      color: #BDFF20; /* Green */
-      text-align: center; /* Centered */
-      margin-bottom: 12px; /* Spacing */
+    .mobile-only .goals-card h2 {
+      font-size: 1.2rem;
+      color: #BDFF20;
+      text-align: center;
+      margin-bottom: 12px;
     }
-    .mobile-only .goals-card h3 { /* Individual goal heading */
-      font-size: 1rem; /* Normal size */
-      color: #fff; /* White */
-      margin-bottom: 4px; /* Spacing */
+    .mobile-only .goals-card h3 {
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 4px;
     }
-    .mobile-only .goals-card p { /* Goal description */
-      font-size: 0.85rem; /* Slightly smaller */
-      color: #ccc; /* Grey */
-      margin-bottom: 8px; /* Spacing */
-      line-height: 1.3; /* Readable */
-    }
-
-
-
-/* 1. Modern: give #events breathing room under the fixed header 
-fix the scroll margin and height */
- .mobile-only #events { /* Section ID for "Know GameVault" */
-  scroll-margin-top: 60px; /* <-- match this to your header height */
-}
-
-/* 2. Fallback: only when #events is the :target (i.e. you just jumped to it) */
-.mobile-only #events:target::before {
-  content: "";
-  display: block;
-  height: 60px;       /* same as your header’s height */
-  margin-top: -60px;  /* pull the real content up */
-  visibility: hidden;
-}
-
-
-
-    /* ── OUR EVENTS ── */
-    .mobile-only .event-card { /* Event card container */
-      background: #333; /* Dark grey */
-      border-radius: 8px; /* Rounded corners */
-      margin: 0 20px 20px; /* Spacing */
-      padding: 16px; /* Internal padding */
-/* ↓ change here ↓ */
-  display: flex; /* hide by default */             
-  flex-direction: column;     /* stack children vertically */
-  gap: 12px;                  /* space between description & poster */
-  align-items: flex-start;    /* align items to the left */
-}
-
-   .mobile-only  .event-card .details { /* Event text details */
-      flex: 1; /* Take remaining space */
-      font-size: 0.9rem; /* Slightly smaller */
-      color: #fff; /* White text */
-      line-height: 1.4; /* Readable */
-    }
-    .mobile-only .event-card .details h3 { /* Event heading */
-      text-align: center; /* Centered */
-      margin-bottom: 8px; /* Spacing */
+    .mobile-only .goals-card p {
+      font-size: 0.85rem;
+      color: #ccc;
+      margin-bottom: 8px;
+      line-height: 1.3;
     }
 
- .mobile-only .event-card .poster {
-  align-self: center;  /* moves the poster div to horizontal center */
-}
-
-
-   .mobile-only  .event-card .poster img { /* Event poster image */
-display: block;      /* so margin auto works */
-  margin: 0 auto;      /* horizontally center the image */
-
-     width: 80%;       /* or whatever fits: 100%, 200px, etc */
-  max-width: 450px; /* safeguard larger screens */
-  height: auto;     /* maintain aspect ratio */
-  display: block;   /* so margin auto works if you need it */
-   border-radius: 20px; /* ← smooths the corners */
-     display: block;      /* so margin auto works */
-  margin: 0 auto;      /* horizontally center the image */
+    /* EVENTS */
+    .mobile-only .event-card {
+      background: #333;
+      border-radius: 8px;
+      margin: 0 20px 20px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .mobile-only .event-card .details {
+      font-size: 0.9rem;
+      color: #fff;
+      line-height: 1.4;
+    }
+    .mobile-only .event-card .details h3 {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .mobile-only .event-card .poster {
+      align-self: center;
+    }
+    .mobile-only .event-card .poster img {
+      width: 80%;
+      max-width: 450px;
+      height: auto;
+      border-radius: 20px;
+      display: block;
+      margin: 0 auto;
     }
 
-
-    
-
-    /* ── GV TEAM ── */
-    .mobile-only .team-grid { /* Team cards container */
-      display: flex; /* Side-by-side */
-      gap: 12px; /* Spacing */
-      overflow-x: auto; /* Horizontal scroll if needed */
-      padding: 0 20px 20px; /* Padding */
+    /* GV TEAM */
+    .mobile-only .team-grid {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 0 20px 20px;
     }
-    .mobile-only .team-card { /* Individual team card */
-      background: #333; /* Dark grey */
-      border-radius: 8px; /* Rounded corners */
-      min-width: 100px; /* Ensure width */
-      padding: 12px; /* Internal padding */
-      text-align: center; /* Center contents */
+    .mobile-only .team-card {
+      background: #333;
+      border-radius: 8px;
+      min-width: 100px;
+      padding: 12px;
+      text-align: center;
     }
-     .mobile-only .team-card .avatar { /* Avatar placeholder */
-      width: 60px; /* Diameter */
-      height: 60px; /* Diameter */
-      background: #555; /* Grey placeholder */
-      border-radius: 50%; /* Circle */
-      margin: 0 auto 8px; /* Center + bottom spacing */
+    .mobile-only .team-card .avatar {
+      width: 60px;
+      height: 60px;
+      background: #555;
+      border-radius: 50%;
+      margin: 0 auto 8px;
     }
-    .mobile-only .team-card p { /* Team member text */
-      font-size: 0.85rem; /* Slightly smaller */
-      color: #fff; /* White */
-      line-height: 1.2; /* Readable */
+    .mobile-only .team-card p {
+      font-size: 0.85rem;
+      color: #fff;
+      line-height: 1.2;
     }
-
-    /* ONLY enlarge Samar & Niel’s cards */
     .mobile-only .team-card.samar,
-    .mobile-only .team-card.niel { /* ← added */
-      width: 140px;      /* exact width for those two */ /* ← added */
-      height: 160px;     /* exact height for those two */ /* ← added */
-      padding: 10px;    /* extra inner spacing */ /* ← added */
-      display: flex;     /* center contents vertically */ /* ← added */
-      flex-direction: column; /* ← added */
-      justify-content: center; /* ← added */
-      align-items: center; /* ← added */
+    .mobile-only .team-card.niel {
+      width: 140px;
+      height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
-
-    /* Samar & Niel: perfect symmetric avatars */
     .mobile-only .team-card.samar .avatar,
-    .mobile-only .team-card.niel .avatar { /* ← added */
-      width: 90px;        /* exact square width */ /* ← added */
-      height: 90px;       /* exact square height */ /* ← added */
-      border-radius: 50%; /* perfect circle */ /* ← added */
-      margin: 0 auto 12px; /* center + bottom spacing */ /* ← added */
-      box-sizing: border-box; /* include padding in size */ /* ← added */
+    .mobile-only .team-card.niel .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      box-sizing: border-box;
+    }
+    .mobile-only .team-card.niel { margin-right: -40px; }
+    .mobile-only .team-card.samar { margin-left: 40px; }
+
+    /* GAMERS TEAM */
+    .mobile-only .gamers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 0 20px 20px;
+    }
+    .mobile-only .gamers-card {
+      background: #333;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+    .mobile-only .gamers-card .avatar {
+      width: 80px;
+      height: 80px;
+      background: #555;
+      border-radius: 50%;
+      margin: 0 auto 8px;
+    }
+    .mobile-only .gamers-card p {
+      font-size: 0.75rem;
+      color: #fff;
+      line-height: 1.2;
     }
 
-    .mobile-only .team-card.niel { /* tweak horizontal offset */ /* ← added */
-      margin-right: -40px; /* ← added */
+    /* CONTACT US CARD */
+    .mobile-only :root {
+      --green: #BDFF20;
+      --card-bg: #1a1a1a;
     }
-    .mobile-only .team-card.samar { /* tweak horizontal offset */ /* ← added */
-      margin-left: 40px; /* ← added */
+    .mobile-only #contact-us > h1 {
+      font-size: 1.7rem;
     }
-
-    /* ── GAMERS TEAM ── */
-     .mobile-only .gamers-grid { /* Gamers grid layout */
-      display: grid; /* CSS grid */
-      grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-      gap: 12px; /* Gap */
-      margin: 0 20px 20px; /* Spacing */
+    .mobile-only .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 24px 16px;
+      margin: 20px;
     }
-    .mobile-only .gamers-card { /* Individual gamer card */
-      background: #333; /* Dark grey */
-      border-radius: 8px; /* Rounded corners */
-      padding: 12px; /* Internal padding */
-      text-align: center; /* Center contents */
+    .mobile-only .form-button {
+      display: block;
+      border: 1px solid var(--green);
+      border-radius: 20px;
+      color: #fff;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      padding: 14px;
+      margin: 0 auto 32px;
     }
-     .mobile-only .gamers-card .avatar { /* Gamer avatar placeholder */
-      width: 60px; /* Diameter */
-      height: 60px; /* Diameter */
-      background: #555; /* Grey */
-      border-radius: 50%; /* Circle */
-      margin: 0 auto 8px; /* Center + bottom */
+    .mobile-only .socials {
+      text-align: center;
     }
-     .mobile-only .gamers-card p { /* Gamer text */
-      font-size: 0.75rem; /* Smaller */
-      color: #fff; /* White */
-      line-height: 1.2; /* Readable */
+    .mobile-only .socials h2 {
+      font-size: 1.25rem;
+      margin-bottom: 16px;
     }
-
-   /* Only enlarge the first two gamer cards */ 
- .mobile-only .gamers-card .avatar {
-  width: 80px;  /* original */
-  height: 80px; /* original */
-}
-
-
-    /* ── CONTACT US CARD ── */
-/* Change the Contact Us heading size */
- .mobile-only #contact-us > h1 {
-  font-size: 1.7rem;      /* adjust to taste: 1.5rem, 24px, etc. */
-}
-
-
-    .mobile-only { /* color variables */ /* ← added */
-      --green: #BDFF20; /* ← added */
-      --card-bg: #1a1a1a; /* ← added */
+    .mobile-only .socials ul {
+      list-style: none;
     }
-    .mobile-only .card { /* container for Contact */ /* ← added */
-      background: var(--card-bg); /* ← added */
-      border-radius: 20px; /* ← added */
-      padding: 24px 16px; /* ← added */
-      margin: 20px; /* vertical spacing */ /* ← added */
-    }
-    .mobile-only .form-button { /* Google form link button */ /* ← added */
-      display: block; /* ← added */
-      border: 1px solid var(--green); /* ← added */
-      border-radius: 20px; /* ← added */
-      color: #fff; /* ← added */
-      font-weight: 600; /* ← added */
-      text-align: center; /* ← added */
-      text-decoration: none; /* ← added */
-      padding: 14px; /* ← added */
-      margin: 0 auto 32px; /* ← added */
-    }
-    .mobile-only .socials { /* Social links area */ /* ← added */
-      text-align: center; /* ← added */
-    }
-    .mobile-only .socials h2 { /* Socials heading */ /* ← added */
-      font-size: 1.25rem; /* ← added */
-      margin-bottom: 16px; /* ← added */
-    }
-    .mobile-only .socials ul { /* Reset list */ /* ← added */
-      list-style: none; /* ← added */
-    }
-    .mobile-only .socials li { /* Individual social */ /* ← added */
-      margin: 8px 0; /* ← added */
+    .mobile-only .socials li {
+      margin: 8px 0;
     }
 
   </style>
@@ -1265,64 +1177,60 @@ display: block;      /* so margin auto works */
   </script>
   </div>
 
+
+  
   <!-- MOBILE VERSION -->
   <div class="mobile-only">
     <!-- HEADER -->
-    <header>
-      <div>
-        <div class="logo">GameVault</div>
-        <button class="hamburger" onclick="toggleMenu()">☰</button>
-      </div>
-    </header>
+     <header>
+    <div class="logo">GameVault</div>
+  </header>
 
-  <!-- NAV MENU (hidden by default) -->
-  <div class="nav-menu" id="menu"> <!-- Slide-in menu panel -->
-    <a href="#Home">Home</a> <!-- Scroll to hero -->
-    <a href="#know-gv">Know GV</a> <!-- Scroll to about -->
-    <a href="#events">Our Events</a> <!-- Scroll to events -->
-    <a href="#GV-Teams">GV Team</a> <!-- Scroll to team -->
-    <a href="#contact-us">Contact Us</a> <!-- Scroll to contact -->
-  </div>
+  <!-- Material-3 hamburger toggle -->
+  <button id="menuToggle" class="m3-hamburger" aria-label="Toggle menu">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <!-- DRAWER MENU (outside of <main>) -->
+  <nav id="menu" class="m3-drawer" role="dialog" aria-modal="true">
+    <ul class="m3-list">
+      <li><a href="#Home">Home</a></li>
+      <li><a href="#know-gv">Know GV</a></li>
+      <li><a href="#events">Our Events</a></li>
+      <li><a href="#teams">GV Team</a></li>
+      <li><a href="#contact-us">Contact Us</a></li>
+    </ul>
+  </nav>
 
   <!-- MAIN CONTENT -->
-  <main> <!-- Wrapper for scrollable content -->
-
-    <!-- HERO SECTION -->
-    <section class="hero" id="Home"> <!-- Hero intro -->
-      <h1>
-        Want to<br>
-        <span class="highlight">Know</span><br>
-        GameVault?
-      </h1>
-      <p>Transforming esports into a healthier,</p> 
-        <p>more inclusive, and truly</p> 
-        <p>engaging experience.</p>
-      <a href="#know-gv" class="btn">Dive In!!</a> <!-- Button scrolls to about -->
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="Home" data-aos="fade-up">
+      <h1 data-aos="fade-up" data-aos-delay="200">Want to<br><span class="highlight">Know</span><br>GameVault?</h1>
+      <p data-aos="fade-up" data-aos-delay="400">Transforming esports into a healthier,</p>
+      <p data-aos="fade-up" data-aos-delay="500">more inclusive, and truly</p>
+      <p data-aos="fade-up" data-aos-delay="600">engaging experience.</p>
+      <a href="#know-gv" class="btn" data-aos="zoom-in" data-aos-delay="800">Dive In!!</a>
     </section>
 
-    <!-- KNOW GAMEVAULT LABEL -->
+    <!-- KNOW GAMEVAULT -->
+
     <div class="section-nav">△ <b>Know GameVault</b> △</div>
-
-    <!-- ABOUT US CARD -->
-         <section id="know-gv"> <!-- Contact section anchor -->
-
-<section class="mobile-card" id="know-gv">
+    <section id="know-gv" class="mobile-card" data-aos="fade-up">
       <h2>ABOUT US</h2>
-      <p>
-        At GameVault, we believe competitive gaming should elevate – not overwhelm – its community. We are on a mission to foster a transparent, informative, and non-addictive E-Sports ecosystem, where thrill and skill go hand in hand with mental well-being.
-      </p>
+      <p>At GameVault, we believe competitive gaming should elevate – not overwhelm – its community. We are on a mission to foster a transparent, informative, and non-addictive E-Sports ecosystem, where thrill and skill go hand in hand with mental well-being.</p>
     </section>
 
-    <!-- OUR MISSION CARD -->
-    <section class="mobile-card" id="mission">
+    <!-- MISSION -->
+    <section class="mobile-card" id="mission" data-aos="fade-up" data-aos-delay="200">
       <h2>Our Mission</h2>
-      <p>
-        To create a safe, inclusive, and supportive space where gamers can compete, learn, and grow without the stress and pressure of traditional gaming environments. We strive to build a community that values respect, balance, and healthy gaming habits.
-      </p>
+      <p>To create a safe, inclusive, and supportive space where gamers can compete, learn, and grow without the stress and pressure of traditional gaming environments. We strive to build a community that values respect, balance, and healthy gaming habits.</p>
     </section>
 
-    <!-- GV GOALS CARD -->
-    <section class="goals-card" id="goals">
+    <!-- GOALS -->
+    <section class="goals-card" id="goals" data-aos="fade-up" data-aos-delay="400">
       <h2>GV Goals</h2>
       <div>
         <h3>Provide Open Information</h3>
@@ -1338,10 +1246,10 @@ display: block;      /* so margin auto works */
       </div>
     </section>
 
-    <!-- OUR EVENTS SECTION -->
+    <!-- OUR EVENTS -->
     <div class="section-nav">◀ Our Events ▶</div>
-    <section id="events">
-      <div class="event-card">
+    <section id="events" data-aos="fade-up" data-aos-delay="600">
+      <div class="event-card" data-aos="fade-up" data-aos-delay="700">
         <div class="details">
           <h3>Upcoming Events</h3>
           <p><strong>Event Details :</strong> Barh Summer Royale BGMI Tournament</p>
@@ -1361,83 +1269,89 @@ display: block;      /* so margin auto works */
       </div>
     </section>
 
-    <!-- GV TEAM SECTION -->
-    <section id="GV-Teams"> <!-- Contact section anchor -->
-
+    <!-- GV TEAM -->
     <div class="section-nav">◀ GV Team ▶</div>
-    <section class="team-grid" id="team">
-      <div class="team-card samar"> <!-- Added class “samar” for individual targeting -->
+    <section class="team-grid" id="teams">
+      <div class="team-card samar" data-aos="zoom-in">
         <div class="avatar"></div>
         <p>Samar<br>CEO</p>
       </div>
-      <div class="team-card niel"> <!-- Added class “niel” for individual targeting -->
+      <div class="team-card niel" data-aos="zoom-in" data-aos-delay="200">
         <div class="avatar"></div>
         <p>Niel<br>CEO</p>
       </div>
     </section>
 
-    <!-- GAMERS TEAM SECTION -->
+    <!-- GAMERS TEAM -->
     <div class="section-nav">◀ Gamers Team ▶</div>
     <section class="gamers-grid">
-      <div class="gamers-card">
+      <div class="gamers-card" data-aos="fade-up" data-aos-delay="100">
         <div class="avatar"></div>
         <p>Kajal (BGMI)<br>The Spotter</p>
       </div>
-      <div class="gamers-card">
+      <div class="gamers-card" data-aos="fade-up" data-aos-delay="200">
         <div class="avatar"></div>
         <p>Deep (BGMI)<br>The 1 vs 4</p>
       </div>
-      <div class="gamers-card">
+      <div class="gamers-card" data-aos="fade-up" data-aos-delay="300">
         <div class="avatar"></div>
         <p>Gamer 3 caption</p>
       </div>
-      <div class="gamers-card">
+      <div class="gamers-card" data-aos="fade-up" data-aos-delay="400">
         <div class="avatar"></div>
         <p>Gamer 4 (BGMI)<br>caption</p>
       </div>
-      <div class="gamers-card">
+      <div class="gamers-card" data-aos="fade-up" data-aos-delay="500">
         <div class="avatar"></div>
         <p>Gamer 5 (BGMI)<br>caption</p>
       </div>
-      <div class="gamers-card">
+      <div class="gamers-card" data-aos="fade-up" data-aos-delay="600">
         <div class="avatar"></div>
         <p>Gamer 6 caption</p>
       </div>
     </section>
 
-    <!-- CONTACT US SECTION -->
-
-    <section id="contact-us"> <!-- Contact section anchor -->
-    <div class="section-nav"></div>
-
-      <h1 style="color: #BDFF20; text-align: center; margin: 20px 0;">
-        △ Contact Us △</h1> <!-- ← added -->
-      <div class="card"> <!-- ← added -->
-        <a href="#" class="form-button">Tap here google form link</a> <!-- ← added -->
-        <div class="socials"> <!-- ← added -->
-          <h2>GV Socials</h2> <!-- ← added -->
-          <ul> <!-- ← added -->
-            <li>@instagram</li> <!-- ← added -->
-            <li>@youtube etc</li> <!-- ← added -->
-            <li>linkedin</li> <!-- ← added -->
-          </ul> <!-- ← added -->
-        </div> <!-- ← added -->
-      </div> <!-- ← added -->
+    <!-- CONTACT US -->
+    <section id="contact-us">
+      <h1 style="color: var(--green); text-align: center; margin: 20px 0;">△ Contact Us △</h1>
+      <div class="card">
+        <a href="#" class="form-button">Tap here google form link</a>
+        <div class="socials">
+          <h2>GV Socials</h2>
+          <ul>
+            <li>@instagram</li>
+            <li>@youtube etc</li>
+            <li>linkedin</li>
+          </ul>
+        </div>
+      </div>
     </section>
+  </main>
 
-
-
-  </main> <!-- End main content -->
-
-
-
+  <!-- AOS JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
-    // Mobile-only JavaScript
-    function toggleMenu() { /* Toggle nav-menu visibility */
-      const menu = document.getElementById('menu'); /* Grab menu by ID */
-      menu.style.display = (menu.style.display === 'block') ? 'none' : 'block'; /* Show/hide */
-    }
+    AOS.init();           /* ← Add this */
+
+
+    const drawer    = document.getElementById('menu');
+    const toggleBtn = document.getElementById('menuToggle');
+    const links     = drawer.querySelectorAll('a');
+
+    // open/close drawer
+    toggleBtn.addEventListener('click', () => {
+      drawer.classList.toggle('open');
+    });
+
+    // close when a link is clicked
+    links.forEach(a =>
+      a.addEventListener('click', () => drawer.classList.remove('open'))
+    );
+
+    // close on ESC
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') drawer.classList.remove('open');
+    });
   </script>
-  </div>
 </body>
 </html>
